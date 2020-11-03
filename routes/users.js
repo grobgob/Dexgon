@@ -26,6 +26,19 @@ router.post('/register', (req, res) => {
     if(password.length < 6){
         errors.push({ msg: 'Password should be at least 6 characters long'})
     }
+
+    //And finally check if no errors are there
+    if(errors.length > 0) {
+        res.render('register', {
+            errors,
+            name,
+            email,
+            password,
+            repeatPassword
+        });
+    } else {
+        res.send('pass');
+    }
 });
 
 module.exports = router;
